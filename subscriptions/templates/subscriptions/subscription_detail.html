@@ -1,0 +1,13 @@
+{% extends "subscriptions/base.html" %}
+{% block title %}Detalle suscripción{% endblock %}
+{% block content %}
+<h2>Detalle</h2>
+<p><strong>Proveedor:</strong> {{ subscription.provider.name }}</p>
+<p><strong>Plan:</strong> {{ subscription.plan.name if subscription.plan else "—" }}</p>
+<p><strong>Inicio:</strong> {{ subscription.start_date }}</p>
+<p><strong>Fin:</strong> {{ subscription.end_date }}</p>
+<p><strong>Estado:</strong> {{ subscription.get_status_display }}</p>
+<p><strong>Comentarios:</strong> {{ subscription.description|default:"Sin comentarios" }}</p>
+
+<p><a href="{% url 'subscriptions:list' %}">Volver</a></p>
+{% endblock %}

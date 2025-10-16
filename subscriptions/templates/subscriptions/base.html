@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Subscription Tracker{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+  <header>
+    <h1>Subscription Tracker</h1>
+    <nav>
+      {% if user.is_authenticated %}
+        <span>Hola, {{ user.username }} | </span>
+        <a href="{% url 'subscriptions:list' %}">Mis suscripciones</a> |
+        <a href="{% url 'subscriptions:create' %}">Registrar</a> |
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
+      {% else %}
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main>
+    {% if messages %}
+      <ul>
+        {% for m in messages %}
+          <li>{{ m }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <small>Subscription Tracker - primer avance</small>
+  </footer>
+</body>
+</html>

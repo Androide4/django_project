@@ -1,0 +1,23 @@
+{% extends "subscriptions/base.html" %}
+{% block title %}Mis suscripciones{% endblock %}
+{% block content %}
+<h2>Mis suscripciones</h2>
+
+<p><a href="{% url 'subscriptions:create' %}">Registrar una nueva suscripción</a></p>
+
+{% if subscriptions %}
+  <ul>
+  {% for s in subscriptions %}
+    <li>
+      <strong>{{ s.provider.name }}</strong>
+      {% if s.plan %} - {{ s.plan.name }}{% endif %}
+      • {{ s.currency.code }} {{ s.plan.price|default:"" }}
+      • Estado: {{ s.get_status_display }}
+      • <a href="{% url 'subscriptions:detail' s.pk %}">Ver</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No tienes suscripciones registradas.</p>
+{% endif %}
+{% endblock %}

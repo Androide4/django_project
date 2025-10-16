@@ -1,0 +1,15 @@
+{% extends "subscriptions/base.html" %}
+{% block title %}Registrar suscripción{% endblock %}
+{% block content %}
+<h2>Registrar suscripción</h2>
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <button type="submit">Guardar</button>
+  <a href="{% url 'subscriptions:list' %}">Cancelar</a>
+</form>
+{% endblock %}
