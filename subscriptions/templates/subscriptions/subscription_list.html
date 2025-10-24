@@ -3,6 +3,8 @@
 {% block content %}
 <h2>Mis suscripciones</h2>
 
+
+
 <p><a href="{% url 'subscriptions:create' %}">Registrar una nueva suscripción</a></p>
 
 {% if subscriptions %}
@@ -14,6 +16,9 @@
       • {{ s.currency.code }} {{ s.plan.price|default:"" }}
       • Estado: {{ s.get_status_display }}
       • <a href="{% url 'subscriptions:detail' s.pk %}">Ver</a>
+       <a href="/subscriptions/{{ s.pk }}/ratings/add/">Agregar calificación</a>
+       <a href="/subscriptions/{{ s.pk }}/ratings/">Ver calificaciones</a>
+
     </li>
   {% endfor %}
   </ul>

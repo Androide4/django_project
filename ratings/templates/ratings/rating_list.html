@@ -1,0 +1,24 @@
+{% extends "subscriptions/base.html" %}
+{% block title %}Calificaciones - {{ subscription.provider.name }}{% endblock %}
+{% block content %}
+<h2>Calificaciones para {{ subscription.provider.name }}</h2>
+
+{% if avg_score %}
+  <p>Promedio: {{ avg_score }}/10</p>
+{% else %}
+  <p>Aún no hay calificaciones</p>
+{% endif %}
+
+<ul>
+  {% for r in ratings %}
+    <li>
+      <strong>{{ r.name }}</strong> — {{ r.score }}/10<br>
+      <small>{{ r.created_at }}</small>
+      <p>{{ r.comment|linebreaks }}</p>
+    </li>
+  {% empty %}
+    <li>No hay calificaciones.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
